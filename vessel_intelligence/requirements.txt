@@ -1,0 +1,3 @@
+# The analyzer and dashboard use only Python's standard library plus installed Wireshark.
+# Optional: decode visible X.509 certificate CN, SAN and issuer from DER.
+cryptography>=42

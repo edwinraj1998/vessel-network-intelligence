@@ -1,0 +1,7 @@
+Bundled installers are unmodified third-party distributions; their own licenses apply.
+Python 3.12.10 x64: Python Software Foundation license and bundled component notices, available in installer/installed distribution. Source: https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe
+Wireshark 4.6.7 x64: GNU GPL version 2 or later, plus component licenses in installer/installed distribution. Corresponding source: https://www.wireshark.org/download/src/all-versions/wireshark-4.6.7.tar.xz
+Installer source: https://www.wireshark.org/download/win64/all-versions/Wireshark-4.6.7-x64.exe
+Do not install optional Npcap/USBPcap drivers for this offline-file workflow. Their separate license terms apply if installed.
+Python wheel licenses are preserved inside each .whl (.dist-info/licenses or license metadata). Wheels downloaded from PyPI: cryptography 46.0.5, cffi 2.1.1, pycparser 3.0.
+This package is an internal deployment build, not a signed commercial installer. Dependency versions are pinned for reproducibility, not claimed to be the latest security releases.

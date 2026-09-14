@@ -1,0 +1,20 @@
+{
+  "url": "https://www.marinetraffic.com/",
+  "verified_at": "REPLACE with the operator verification timestamp in UTC",
+  "match_basis": "REPLACE with how PCAP-derived identifiers match this MarineTraffic record; include frame references",
+  "information": {
+    "vessel_name": null,
+    "imo": null,
+    "mmsi": null,
+    "vessel_type": null,
+    "flag": null,
+    "call_sign": null,
+    "build_year": null,
+    "dimensions": null,
+    "latest_location": null,
+    "location_reported_at": null,
+    "destination": null,
+    "last_reported_port": null,
+    "photo_source_url": null
+  }
+}

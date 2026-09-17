@@ -49,6 +49,9 @@ def isolated_capture(path,selected):
 
 class Handler(BaseHTTPRequestHandler):
  def log_message(self,*args):pass
+ def do_POST(self):
+  if urllib.parse.urlsplit(self.path).path!='/api/desktop' or self.headers.get('X-Satellite-Action')!='open-desktop':self.send_error(403);return
+  self.do_GET()
  def do_GET(self):
   # Bind loopback, block cross-origin embedding/requests and DNS rebinding hostnames.
   if self.headers.get('Host','').split(':')[0] not in ('127.0.0.1','localhost'):
@@ -87,6 +90,30 @@ class Handler(BaseHTTPRequestHandler):
   try:
    vid=int(q.get('vessel','0'));kind=q.get('kind','sessions');limit=min(1000,max(1,int(q.get('limit','200'))));offset=max(0,int(q.get('offset','0')))
    if url.path=='/':self.send_bytes((ROOT/'dashboard.html').read_bytes(),'text/html; charset=utf-8')
+   elif url.path=='/intelligence':self.send_bytes((ROOT/'intelligence.html').read_bytes(),'text/html; charset=utf-8')
+   elif url.path=='/api/satellites':
+    from satellite_profiles import catalog as satellites
+    self.send_json(satellites(db))
+   elif url.path=='/api/satellite-profile':
+    from satellite_profiles import profile as satellite_profile
+    self.send_json(satellite_profile(db,q.get('satellite','')))
+   elif url.path=='/api/intelligence':
+    from intelligence import listing
+    self.send_json(listing(db,q))
+   elif url.path=='/api/audio':
+    from intelligence import wav
+    self.send_bytes(wav(db,q),'audio/wav')
+   elif url.path=='/api/desktop':
+    if self.command!='POST':self.send_error(405);return
+    import subprocess,sys
+    source=json.loads(db.execute("SELECT value FROM meta WHERE key='pcap'").fetchone()[0])
+    child=getattr(self.server,'desktop_process',None)
+    if child is None or child.poll() is not None:
+     log=(dbpath.parent/'desktop-workspace.log').open('a',encoding='utf8')
+     try:self.server.desktop_process=subprocess.Popen([sys.executable,str(ROOT/'legacy_dashboard.py'),'--pcap',source],stdout=log,stderr=log)
+     finally:log.close()
+     self.send_json({'status':'Desktop workspace opened on the server machine; press Analyze there. Uses its own capture-level analysis, not vessel attribution.'})
+    else:self.send_json({'status':'Desktop workspace is already running. Use its Open control to change capture.'})
    elif url.path=='/api/catalog':self.send_json(catalog(db))
    elif url.path=='/api/reconstruction':
     from reconstruction_api import listing

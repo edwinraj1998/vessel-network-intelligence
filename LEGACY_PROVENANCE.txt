@@ -1,0 +1,3 @@
+Original user-owned pcap_dashboard.py from task Diagnose satellite telemetry tab.
+Source SHA-256: 211f1b1d6c248f133dc1657b2f2157b305f6c778ab9425a3ba58820c7c43754f
+Imported 2026-09-17. Changes: Satellite Intelligence branding; optional --pcap argument. Original logic retained.

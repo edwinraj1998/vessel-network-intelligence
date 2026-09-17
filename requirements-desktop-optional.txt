@@ -1,0 +1,3 @@
+# Optional desktop image previews and charts; browser UI does not require these.
+Pillow
+matplotlib

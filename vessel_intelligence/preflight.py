@@ -1,6 +1,6 @@
 import pathlib,sys,struct,sqlite3,tempfile,subprocess,importlib
 from core import executable
-print("Vessel Intelligence 2.1.0 offline installation check")
+print("Satellite Intelligence 3.0 offline installation check")
 assert sys.version_info[:2]==(3,12), "Python 3.12 required for this wheel bundle"
 assert struct.calcsize("P")==8,"64-bit Python required"
 print("Python:",sys.version.split()[0],"SQLite:",sqlite3.sqlite_version)

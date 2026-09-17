@@ -1,6 +1,8 @@
-# Vessel Network Intelligence
+# Satellite Intelligence
 
-Python, TShark and SQLite application for offline multi-vessel PCAP analysis with an interactive localhost dashboard.
+Satellite Intelligence 3.0 — Python, TShark and SQLite application for offline multi-vessel PCAP analysis with an interactive localhost dashboard.
+
+See [Satellite Intelligence integration and upgrade guide](SATELLITE_INTELLIGENCE.md) for satellite profiles, protocol workspaces and the bundled original desktop dashboard.
 
 ## Features
 
@@ -37,7 +39,7 @@ Also obtain the Python and Wireshark full installers identified in THIRD_PARTY_N
 
 ## Validation and limitations
 
-Run **Run Validation Tests.cmd**. The 27 included tests passed with Python 3.12.2 and Wireshark 4.6.7 on Windows. A clean offline-machine install remains a destination acceptance check.
+Run **Run Validation Tests.cmd**. The 31 included tests passed with Python 3.12.2 and Wireshark 4.6.7 on Windows. A clean offline-machine install remains a destination acceptance check.
 
 Do not infer a vessel solely from a username or custom SMS port. Attribution follows session and frame evidence; unattributed content remains separate. Partial video objects are not complete movies. Proprietary SMS protocols require a known schema. Encrypted content requires valid keys and supported decoding. No full HTTP/2 or HTTP/3 body recovery, cross-file transport stitching or multi-GB performance benchmark is claimed.
 

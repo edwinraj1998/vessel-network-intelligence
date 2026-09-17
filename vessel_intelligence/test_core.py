@@ -49,7 +49,7 @@ class CorrelationTests(unittest.TestCase):
   packet(self.db,6,23,'8.7.6.5','10.0.0.2',443,6000,'TCP','tls',{'tcp.stream':['1']},direction='download')
   packet(self.db,7,80,'10.0.0.2','8.7.6.5',6001,443,'TCP','tls',{'tcp.stream':['2']})
   correlate(self.db);f=self.db.execute("SELECT * FROM flows WHERE service='YouTube'").fetchone();self.assertEqual(f['bytes'],200);self.assertEqual(f['bytes_up'],100);self.assertEqual(f['bytes_down'],100);self.assertEqual(f['confidence'],'High');self.assertIn('query_frame',f['evidence']);self.assertEqual(self.db.execute('SELECT service FROM flows WHERE local_port=?',('6001',)).fetchone()[0],'Unknown')
-  write_report(self.db,self.path/'report.html');self.assertIn('Vessel Network Intelligence',(self.path/'report.html').read_text(encoding='utf8'))
+  write_report(self.db,self.path/'report.html');self.assertIn('Satellite Intelligence',(self.path/'report.html').read_text(encoding='utf8'))
  def test_quic_same_connection_and_session_scoping(self):
   packet(self.db,3,20,'10.0.0.2','8.7.6.5',5000,443,'UDP','quic',{'udp.stream':['1'],'quic.connection.number':['2'],'quic.dcid':['abcd'],'tls.handshake.extensions_server_name':['youtube.com']})
   packet(self.db,4,21,'8.7.6.5','10.0.0.2',443,5000,'UDP','udp',{'udp.stream':['1']},direction='download')

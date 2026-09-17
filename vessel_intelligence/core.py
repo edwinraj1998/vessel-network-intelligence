@@ -383,6 +383,10 @@ def analyze(args):
   progress('reconstruction',message='Recovering visible HTTP, media, email and validated SMS content')
   try:reconstruct_content(dbpath,args.keylog)
   except Exception as content_error:putmeta(db,'reconstruction_status','Partial/failed: '+str(content_error));db.commit()
+  from intelligence import build as build_intelligence
+  progress('intelligence',message='Indexing STUN, signaling, subscriber and media evidence')
+  try:build_intelligence(dbpath)
+  except Exception as intelligence_error:putmeta(db,'intelligence_status','Partial/failed: '+str(intelligence_error));db.commit()
   from report import write_report
   write_report(db,out/'report.html');progress('complete',database=str(dbpath),dashboard=str(out/'report.html'),elapsed_seconds=round(time.monotonic()-start,1))
  except Exception as exc:putmeta(db,'status','failed');putmeta(db,'error',str(exc));db.commit();raise
